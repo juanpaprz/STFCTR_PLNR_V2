@@ -1,0 +1,437 @@
+[
+    {
+        "id": "AlienDNACapsule",
+        "name": "Alien DNA Capsule",
+        "stackSize": "SS_SMALL"
+    },
+    {
+        "id": "AlienProtein",
+        "name": "Alien Protein",
+        "stackSize": "SS_MEDIUM"
+    },
+    {
+        "id": "AluminaSolution",
+        "name": "Alumina Solution",
+        "stackSize": "SS_FLUID"
+    },
+    {
+        "id": "AluminumCasing",
+        "name": "Aluminum Casing",
+        "stackSize": "SS_BIG"
+    },
+    {
+        "id": "AluminumIngot",
+        "name": "Aluminum Ingot",
+        "stackSize": "SS_MEDIUM"
+    },
+    {
+        "id": "AluminumPlateReinforced",
+        "name": "Heat Sink",
+        "stackSize": "SS_MEDIUM"
+    },
+    {
+        "id": "AluminumPlate",
+        "name": "Alclad Aluminum Sheet",
+        "stackSize": "SS_BIG"
+    },
+    {
+        "id": "AluminumScrap",
+        "name": "Aluminum Scrap",
+        "stackSize": "SS_HUGE"
+    },
+    {
+        "id": "Battery",
+        "name": "Battery",
+        "stackSize": "SS_BIG"
+    },
+    {
+        "id": "Cable",
+        "name": "Cable",
+        "stackSize": "SS_BIG"
+    },
+    {
+        "id": "Cement",
+        "name": "Concrete",
+        "stackSize": "SS_HUGE"
+    },
+    {
+        "id": "CircuitBoardHighSpeed",
+        "name": "AI Limiter",
+        "stackSize": "SS_MEDIUM"
+    },
+    {
+        "id": "CircuitBoard",
+        "name": "Circuit Board",
+        "stackSize": "SS_BIG"
+    },
+    {
+        "id": "ColorCartridge",
+        "name": "Color Cartridge",
+        "stackSize": "SS_BIG"
+    },
+    {
+        "id": "CompactedCoal",
+        "name": "Compacted Coal",
+        "stackSize": "SS_MEDIUM"
+    },
+    {
+        "id": "ComputerSuper",
+        "name": "Supercomputer",
+        "stackSize": "SS_SMALL"
+    },
+    {
+        "id": "Computer",
+        "name": "Computer",
+        "stackSize": "SS_SMALL"
+    },
+    {
+        "id": "CoolingSystem",
+        "name": "Cooling System",
+        "stackSize": "SS_MEDIUM"
+    },
+    {
+        "id": "CopperDust",
+        "name": "Copper Powder",
+        "stackSize": "SS_HUGE"
+    },
+    {
+        "id": "CopperIngot",
+        "name": "Copper Ingot",
+        "stackSize": "SS_MEDIUM"
+    },
+    {
+        "id": "CopperSheet",
+        "name": "Copper Sheet",
+        "stackSize": "SS_BIG"
+    },
+    {
+        "id": "CrystalOscillator",
+        "name": "Crystal Oscillator",
+        "stackSize": "SS_MEDIUM"
+    },
+    {
+        "id": "CrystalShard",
+        "name": "Power Shard",
+        "stackSize": "SS_MEDIUM"
+    },
+    {
+        "id": "Crystal",
+        "name": "Blue Power Slug",
+        "stackSize": "SS_SMALL"
+    },
+    {
+        "id": "Crystal_mk2",
+        "name": "Yellow Power Slug",
+        "stackSize": "SS_SMALL"
+    },
+    {
+        "id": "Crystal_mk3",
+        "name": "Purple Power Slug",
+        "stackSize": "SS_SMALL"
+    },
+    {
+        "id": "ElectromagneticControlRod",
+        "name": "Electromagnetic Control Rod",
+        "stackSize": "SS_MEDIUM"
+    },
+    {
+        "id": "Filter",
+        "name": "Gas Filter",
+        "stackSize": "SS_SMALL"
+    },
+    {
+        "id": "FluidCanister",
+        "name": "Empty Canister",
+        "stackSize": "SS_MEDIUM"
+    },
+    {
+        "id": "Fuel",
+        "name": "Packaged Fuel",
+        "stackSize": "SS_MEDIUM"
+    },
+    {
+        "id": "GasTank",
+        "name": "Empty Fluid Tank",
+        "stackSize": "SS_MEDIUM"
+    },
+    {
+        "id": "GoldIngot",
+        "name": "Caterium Ingot",
+        "stackSize": "SS_MEDIUM"
+    },
+    {
+        "id": "GunpowderMK2",
+        "name": "Smokeless Powder",
+        "stackSize": "SS_MEDIUM"
+    },
+    {
+        "id": "Gunpowder",
+        "name": "Black Powder",
+        "stackSize": "SS_BIG"
+    },
+    {
+        "id": "HUBParts",
+        "name": "HUB Parts",
+        "stackSize": "SS_ONE"
+    },
+    {
+        "id": "HazmatFilter",
+        "name": "Iodine Infused Filter",
+        "stackSize": "SS_SMALL"
+    },
+    {
+        "id": "HeavyOilResidue",
+        "name": "Heavy Oil Residue",
+        "stackSize": "SS_FLUID"
+    },
+    {
+        "id": "HighSpeedConnector",
+        "name": "High-Speed Connector",
+        "stackSize": "SS_MEDIUM"
+    },
+    {
+        "id": "HighSpeedWire",
+        "name": "Quickwire",
+        "stackSize": "SS_HUGE"
+    },
+    {
+        "id": "IronIngot",
+        "name": "Iron Ingot",
+        "stackSize": "SS_MEDIUM"
+    },
+    {
+        "id": "IronPlateReinforced",
+        "name": "Reinforced Iron Plate",
+        "stackSize": "SS_MEDIUM"
+    },
+    {
+        "id": "IronPlate",
+        "name": "Iron Plate",
+        "stackSize": "SS_BIG"
+    },
+    {
+        "id": "IronRod",
+        "name": "Iron Rod",
+        "stackSize": "SS_BIG"
+    },
+    {
+        "id": "IronScrew",
+        "name": "Screw",
+        "stackSize": "SS_HUGE"
+    },
+    {
+        "id": "LiquidFuel",
+        "name": "Fuel",
+        "stackSize": "SS_FLUID"
+    },
+    {
+        "id": "LiquidTurboFuel",
+        "name": "Turbofuel",
+        "stackSize": "SS_FLUID"
+    },
+    {
+        "id": "ModularFrameFused",
+        "name": "Fused Modular Frame",
+        "stackSize": "SS_SMALL"
+    },
+    {
+        "id": "ModularFrameHeavy",
+        "name": "Heavy Modular Frame",
+        "stackSize": "SS_SMALL"
+    },
+    {
+        "id": "ModularFrameLightweight",
+        "name": "Radio Control Unit",
+        "stackSize": "SS_SMALL"
+    },
+    {
+        "id": "ModularFrame",
+        "name": "Modular Frame",
+        "stackSize": "SS_SMALL"
+    },
+    {
+        "id": "MotorLightweight",
+        "name": "Turbo Motor",
+        "stackSize": "SS_SMALL"
+    },
+    {
+        "id": "Motor",
+        "name": "Motor",
+        "stackSize": "SS_SMALL"
+    },
+    {
+        "id": "NitricAcid",
+        "name": "Nitric Acid",
+        "stackSize": "SS_FLUID"
+    },
+    {
+        "id": "NonFissibleUranium",
+        "name": "Non-fissile Uranium",
+        "stackSize": "SS_HUGE"
+    },
+    {
+        "id": "NuclearWaste",
+        "name": "Uranium Waste",
+        "stackSize": "SS_HUGE"
+    },
+    {
+        "id": "PackagedOilResidue",
+        "name": "Packaged Heavy Oil Residue",
+        "stackSize": "SS_MEDIUM"
+    },
+    {
+        "id": "PackagedOil",
+        "name": "Packaged Oil",
+        "stackSize": "SS_MEDIUM"
+    },
+    {
+        "id": "PackagedWater",
+        "name": "Packaged Water",
+        "stackSize": "SS_MEDIUM"
+    },
+    {
+        "id": "PetroleumCoke",
+        "name": "Petroleum Coke",
+        "stackSize": "SS_BIG"
+    },
+    {
+        "id": "Plastic",
+        "name": "Plastic",
+        "stackSize": "SS_BIG"
+    },
+    {
+        "id": "PlutoniumCell",
+        "name": "Encased Plutonium Cell",
+        "stackSize": "SS_BIG"
+    },
+    {
+        "id": "PlutoniumPellet",
+        "name": "Plutonium Pellet",
+        "stackSize": "SS_MEDIUM"
+    },
+    {
+        "id": "PlutoniumWaste",
+        "name": "Plutonium Waste",
+        "stackSize": "SS_HUGE"
+    },
+    {
+        "id": "PolymerResin",
+        "name": "Polymer Resin",
+        "stackSize": "SS_BIG"
+    },
+    {
+        "id": "PressureConversionCube",
+        "name": "Pressure Conversion Cube",
+        "stackSize": "SS_SMALL"
+    },
+    {
+        "id": "QuartzCrystal",
+        "name": "Quartz Crystal",
+        "stackSize": "SS_BIG"
+    },
+    {
+        "id": "Rotor",
+        "name": "Rotor",
+        "stackSize": "SS_MEDIUM"
+    },
+    {
+        "id": "Rubber",
+        "name": "Rubber",
+        "stackSize": "SS_BIG"
+    },
+    {
+        "id": "Silica",
+        "name": "Silica",
+        "stackSize": "SS_BIG"
+    },
+    {
+        "id": "SpaceElevatorPart_1",
+        "name": "Smart Plating",
+        "stackSize": "SS_SMALL"
+    },
+    {
+        "id": "SpaceElevatorPart_2",
+        "name": "Versatile Framework",
+        "stackSize": "SS_SMALL"
+    },
+    {
+        "id": "SpaceElevatorPart_3",
+        "name": "Automated Wiring",
+        "stackSize": "SS_SMALL"
+    },
+    {
+        "id": "SpaceElevatorPart_4",
+        "name": "Modular Engine",
+        "stackSize": "SS_SMALL"
+    },
+    {
+        "id": "SpaceElevatorPart_5",
+        "name": "Adaptive Control Unit",
+        "stackSize": "SS_SMALL"
+    },
+    {
+        "id": "SpaceElevatorPart_6",
+        "name": "Magnetic Field Generator",
+        "stackSize": "SS_SMALL"
+    },
+    {
+        "id": "SpaceElevatorPart_7",
+        "name": "Assembly Director System",
+        "stackSize": "SS_SMALL"
+    },
+    {
+        "id": "SpaceElevatorPart_8",
+        "name": "Thermal Propulsion Rocket",
+        "stackSize": "SS_SMALL"
+    },
+    {
+        "id": "SpaceElevatorPart_9",
+        "name": "Nuclear Pasta",
+        "stackSize": "SS_SMALL"
+    },
+    {
+        "id": "Stator",
+        "name": "Stator",
+        "stackSize": "SS_MEDIUM"
+    },
+    {
+        "id": "SteelIngot",
+        "name": "Steel Ingot",
+        "stackSize": "SS_MEDIUM"
+    },
+    {
+        "id": "SteelPipe",
+        "name": "Steel Pipe",
+        "stackSize": "SS_BIG"
+    },
+    {
+        "id": "SteelPlateReinforced",
+        "name": "Encased Industrial Beam",
+        "stackSize": "SS_MEDIUM"
+    },
+    {
+        "id": "SteelPlate",
+        "name": "Steel Beam",
+        "stackSize": "SS_BIG"
+    },
+    {
+        "id": "SulfuricAcid",
+        "name": "Sulfuric Acid",
+        "stackSize": "SS_FLUID"
+    },
+    {
+        "id": "TurboFuel",
+        "name": "Packaged Turbofuel",
+        "stackSize": "SS_MEDIUM"
+    },
+    {
+        "id": "UraniumCell",
+        "name": "Encased Uranium Cell",
+        "stackSize": "SS_BIG"
+    },
+    {
+        "id": "Wire",
+        "name": "Wire",
+        "stackSize": "SS_HUGE"
+    }
+]

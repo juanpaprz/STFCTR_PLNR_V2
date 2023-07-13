@@ -1,0 +1,62 @@
+[
+    {
+        "id": "Coal",
+        "name": "Coal",
+        "stackSize": "SS_MEDIUM"
+    },
+    {
+        "id": "OreCopper",
+        "name": "Copper Ore",
+        "stackSize": "SS_MEDIUM"
+    },
+    {
+        "id": "OreGold",
+        "name": "Caterium Ore",
+        "stackSize": "SS_MEDIUM"
+    },
+    {
+        "id": "OreIron",
+        "name": "Iron Ore",
+        "stackSize": "SS_MEDIUM"
+    },
+    {
+        "id": "RawQuartz",
+        "name": "Raw Quartz",
+        "stackSize": "SS_MEDIUM"
+    },
+    {
+        "id": "Stone",
+        "name": "Limestone",
+        "stackSize": "SS_MEDIUM"
+    },
+    {
+        "id": "Sulfur",
+        "name": "Sulfur",
+        "stackSize": "SS_MEDIUM"
+    },
+    {
+        "id": "LiquidOil",
+        "name": "Crude Oil",
+        "stackSize": "SS_FLUID"
+    },
+    {
+        "id": "NitrogenGas",
+        "name": "Nitrogen Gas",
+        "stackSize": "SS_FLUID"
+    },
+    {
+        "id": "Water",
+        "name": "Water",
+        "stackSize": "SS_FLUID"
+    },
+    {
+        "id": "OreBauxite",
+        "name": "Bauxite",
+        "stackSize": "SS_MEDIUM"
+    },
+    {
+        "id": "OreUranium",
+        "name": "Uranium",
+        "stackSize": "SS_MEDIUM"
+    }
+]

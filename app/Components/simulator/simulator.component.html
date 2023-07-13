@@ -1,0 +1,15 @@
+<div class="py-2 bg-body-secondary">
+  <h4 class="text-center">Time: {{ minutes }}</h4>
+  <div class="text-center">
+    <button
+      class="btn"
+      [ngClass]="stopped ? 'btn-success' : 'btn-danger'"
+      (click)="click()"
+    >
+      {{ stopped ? 'Start' : 'Stop' }}
+    </button>
+  </div>
+</div>
+<div class="container mt-4">
+  <div class="row row-cols-lg-4"></div>
+</div>

@@ -1,0 +1,237 @@
+<div class="container-fluid my-4">
+  <div *ngIf="itemGoal" class="">
+    <table class="table table-dark">
+      <thead>
+        <tr>
+          <th colspan="4" class="text-center"><h4>Total</h4></th>
+        </tr>
+        <tr>
+          <th>Inputs</th>
+          <th>Outputs</th>
+          <th>Machines</th>
+          <th>Power</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <table class="table">
+              <tbody>
+                <tr *ngFor="let input of planTotal.inputs">
+                  <td>{{ input.name }}</td>
+                  <td>{{ input.amount }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+          <td>
+            <table class="table">
+              <tbody>
+                <tr *ngFor="let output of planTotal.outputs">
+                  <td>{{ output.name }}</td>
+                  <td>{{ output.amount }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+          <td>
+            <table class="table">
+              <tbody>
+                <tr *ngFor="let machine of planTotal.machines">
+                  <td>{{ machine.name }}</td>
+                  <td>{{ machine.amount }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+          <td>
+            <table class="table">
+              <tbody>
+                <tr *ngFor="let machine of planTotal.machines">
+                  <td>{{ machine.totalPower }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+        <tr>
+          <th colspan="3" class="text-end">Total Power:</th>
+          <td>{{ planTotal.totalPowerConsumption }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Step</th>
+        <th scope="col">Item</th>
+        <th scope="col">Recipe</th>
+        <th scope="col">Item/minute</th>
+        <ng-container *ngIf="itemGoal">
+          <th scope="col">Products</th>
+          <th scope="col">Ingridients</th>
+          <th scope="col">Machines</th>
+          <th scope="col">Power</th>
+          <th scope="col">Overflow</th>
+        </ng-container>
+      </tr>
+    </thead>
+    <tbody class="table-group-divider">
+      <tr>
+        <th scope="row">{{ planGoal.step }}</th>
+        <td scope="row">
+          <select
+            class="form-select"
+            (change)="selectItemGoal()"
+            [(ngModel)]="itemGoal"
+          >
+            <option value=""></option>
+            <option *ngFor="let item of items" [value]="item.id">
+              {{ item.name }}
+            </option>
+          </select>
+        </td>
+        <td>
+          <select
+            class="form-select"
+            (change)="selectRecipe()"
+            [(ngModel)]="planGoal.selectedRecipeName"
+          >
+            <option
+              *ngFor="let recipe of planGoal.recipes"
+              [value]="recipe.name.trim()"
+              [selected]="recipe.name === planGoal.selectedRecipeName"
+            >
+              {{ recipe.name }}
+            </option>
+          </select>
+        </td>
+        <td>
+          <input
+            type="number"
+            class="form-control"
+            [disabled]="!itemGoal"
+            [(ngModel)]="planGoal.itemsPerMinute"
+            (focus)="changeIPMGoalFocus()"
+            (blur)="changeIPMGoalFocus()"
+          />
+        </td>
+        <ng-container *ngIf="itemGoal">
+          <td>
+            <table class="table">
+              <thead class="text-nowrap">
+                <th>Item</th>
+                <th>/ Minute</th>
+              </thead>
+              <tbody>
+                <tr *ngFor="let product of planGoal.selectedRecipe.products">
+                  <td>{{ product.item.name }}</td>
+                  <td class="text-center">{{ product.amountPerMinute }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+          <td>
+            <table class="table">
+              <thead class="text-nowrap">
+                <th>Item</th>
+                <th>/ Minute</th>
+              </thead>
+              <tbody>
+                <tr
+                  *ngFor="let ingridient of planGoal.selectedRecipe.ingridients"
+                >
+                  <td>{{ ingridient.item.name }}</td>
+                  <td class="text-center">
+                    {{ ingridient.amountPerMinute * planGoal.machinesNumber }}
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+          <td>
+            <div class="d-flex flex-nowrap justify-content-between">
+              <div class="me-2">{{ planGoal.machine.name }}</div>
+              <div>{{ planGoal.machinesNumber }}</div>
+            </div>
+          </td>
+          <td class="text-nowrap">{{ planGoal.powerConsumpsion }} MW/minute</td>
+          <td class="text-nowrap">{{ planGoal.overflow }} /minute</td>
+        </ng-container>
+      </tr>
+      <tr *ngFor="let step of planSteps; index as i">
+        <th scope="row">{{ step.step }}</th>
+        <td scope="row">
+          {{ step.item.name }}
+        </td>
+        <td>
+          <select
+            class="form-select"
+            (change)="selectRecipe(step.id)"
+            [(ngModel)]="step.selectedRecipeName"
+            *ngIf="!step.item.isResource"
+          >
+            <option
+              *ngFor="let recipe of step.recipes"
+              [value]="recipe.name.trim()"
+              [selected]="recipe.name === planGoal.selectedRecipe.name"
+            >
+              {{ recipe.name }}
+            </option>
+          </select>
+        </td>
+        <td>
+          {{ step.itemsPerMinute }}
+        </td>
+        <td>
+          <table class="table" *ngIf="!step.item.isResource">
+            <thead class="text-nowrap">
+              <th>Item</th>
+              <th>/ Minute</th>
+            </thead>
+            <tbody>
+              <tr *ngFor="let product of step.selectedRecipe.products">
+                <td>{{ product.item.name }}</td>
+                <td class="text-center">{{ product.amountPerMinute }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </td>
+        <td>
+          <table class="table" *ngIf="!step.item.isResource">
+            <thead class="text-nowrap">
+              <th>Item</th>
+              <th>/ Minute</th>
+            </thead>
+            <tbody>
+              <tr *ngFor="let ingridient of step.selectedRecipe.ingridients">
+                <td>{{ ingridient.item.name }}</td>
+                <td class="text-center">
+                  {{ ingridient.amountPerMinute * step.machinesNumber }}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </td>
+        <td>
+          <div
+            class="d-flex flex-nowrap justify-content-between"
+            *ngIf="!step.item.isResource"
+          >
+            <div class="me-2">{{ step.machine.name }}</div>
+            <div>{{ step.machinesNumber }}</div>
+          </div>
+        </td>
+        <td class="text-nowrap">
+          <p *ngIf="!step.item.isResource">
+            {{ step.powerConsumpsion }} MW/minute
+          </p>
+        </td>
+        <td class="text-nowrap">
+          <p *ngIf="!step.item.isResource">{{ step.overflow }} /minute</p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

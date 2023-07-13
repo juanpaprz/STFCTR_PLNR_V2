@@ -1,0 +1,34 @@
+[
+    {
+        "name": "Constructor",
+        "powerConsumpsion": 4
+    },
+    {
+        "name": "Smelter",
+        "powerConsumpsion": 4
+    },
+    {
+        "name": "Foundry",
+        "powerConsumpsion": 16
+    },
+    {
+        "name": "Refinery",
+        "powerConsumpsion": 30
+    },
+    {
+        "name": "Assembler",
+        "powerConsumpsion": 15
+    },
+    {
+        "name": "Packager",
+        "powerConsumpsion": 10
+    },
+    {
+        "name": "Blender",
+        "powerConsumpsion": 75
+    },
+    {
+        "name": "Manufacturer",
+        "powerConsumpsion": 55
+    }
+]
