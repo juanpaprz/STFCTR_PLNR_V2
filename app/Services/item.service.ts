@@ -56,8 +56,8 @@ export class ItemService {
   getItem(id: string): Item {
     let item = this.items.find((i) => i.id === id);
 
-    if(!item) throw new Error('Item Not Found')
+    if (!item) throw new Error('Item Not Found');
 
-    return item
+    return item;
   }
 }

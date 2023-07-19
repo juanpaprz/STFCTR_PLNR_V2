@@ -38,12 +38,16 @@ export class PlannerV2Component implements OnInit {
   }
 
   selectItemGoal() {
+    if (!this.planGoal.itemId) return;
     this.planGoal.item = this.itemService.getItem(this.planGoal.itemId);
-    this.setRecipes(this.planGoal)
+    this.setRecipes(this.planGoal);
   }
 
-  setRecipes(planRow: PlanRow){
+  setRecipes(planRow: PlanRow) {
     planRow.recipes = this.recipeService.getRecipesOfItem(planRow.itemId);
-    planRow.selectedRecipe = this.recipeService.getDefualtRecipe(planRow.itemId)
+    planRow.selectedRecipe = this.recipeService.getDefualtRecipe(
+      planRow.itemId
+    );
+    planRow.selectedRecipeId = planRow.selectedRecipe.id;
   }
 }
