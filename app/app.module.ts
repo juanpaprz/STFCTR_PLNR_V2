@@ -5,7 +5,6 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { PlannerV2Component } from './Components/planner-v2/planner-v2.component';
-import { PlannerComponent } from './Components/planner/planner.component';
 import { SimulatorComponent } from './Components/simulator/simulator.component';
 import { ItemService } from './Services/item.service';
 import { MachineService } from './Services/machine.service';
@@ -19,12 +18,7 @@ const appRoutes: Routes = [
 @NgModule({
   imports: [BrowserModule, RouterModule.forRoot(appRoutes), FormsModule],
   providers: [ItemService, RecipeService, MachineService],
-  declarations: [
-    AppComponent,
-    SimulatorComponent,
-    PlannerComponent,
-    PlannerV2Component,
-  ],
+  declarations: [AppComponent, SimulatorComponent, PlannerV2Component],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

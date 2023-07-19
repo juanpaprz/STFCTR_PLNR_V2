@@ -10,7 +10,7 @@ export class PlanRow {
   itemId: string = '';
   recipes: Recipe[] = [];
   selectedRecipe: Recipe = new Recipe();
-  selectedRecipeName: string = '';
+  selectedRecipeId: string = '';
   itemsPerMinute: number = 0;
   overflow: number = 0;
   machine: Machine = new Machine();

@@ -40,12 +40,12 @@
             [name]="planRow.itemId + 'recipe'"
             [id]="planRow.itemId + 'recipe'"
             class="form-select"
-            [(ngModel)]="planRow.selectedRecipeName"
+            [(ngModel)]="planRow.selectedRecipeId"
           >
             <option
               *ngFor="let recipe of planRow.recipes"
-              [value]="recipe.name"
-              [selected]="planRow.selectedRecipe.name === recipe.name"
+              [value]="recipe.id"
+              [selected]="recipe.id === planRow.selectedRecipe.id"
             >
               {{ recipe.name }}
             </option>

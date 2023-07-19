@@ -51,6 +51,7 @@ export class RecipeService {
       });
 
       let recipe: Recipe = {
+        id: r.name.replace(/\s/g, ''),
         name: r.name,
         isAlternate: r.isAlternate,
         producedIn: r.producedIn,
@@ -85,7 +86,7 @@ export class RecipeService {
   getDefualtRecipe(itemId: string): Recipe {
     let recipesOfItem = this.getRecipesOfItem(itemId);
     recipesOfItem = recipesOfItem.filter(
-      (r) => !r.products.some((p) => p.item.id === itemId)
+      (r) => !r.ingridients.some((i) => i.item.id === itemId)
     );
 
     let recipe = recipesOfItem.find((r) => !r.isAlternate);

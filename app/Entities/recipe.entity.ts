@@ -1,6 +1,7 @@
 import { Item } from '../Entities/item.entity';
 
 export class Recipe {
+  id: string = '';
   name: string = '';
   isAlternate: boolean = false;
   producedIn: string = '';
