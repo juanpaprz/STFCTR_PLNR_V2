@@ -72,7 +72,7 @@ export class RecipeService {
     return this.recipes;
   }
 
-  getRecipesOffItem(itemId: string): Recipe[] {
+  getRecipesOfItem(itemId: string): Recipe[] {
     let recipes = this.getAllRecipes();
 
     let recipesOfItem = recipes.filter((r) =>
@@ -83,11 +83,20 @@ export class RecipeService {
   }
 
   getDefualtRecipe(itemId: string): Recipe {
+    let recipesOfItem = this.getRecipesOfItem(itemId);
+    recipesOfItem = recipesOfItem.filter(
+      (r) => !r.products.some((p) => p.item.id === itemId)
+    );
 
-  } 
+    let recipe = recipesOfItem.find((r) => !r.isAlternate);
+
+    if (!recipe) return recipesOfItem[0];
+
+    return recipe;
+  }
 
   isItemCraftable(itemId: string): boolean {
-    let recipesOfItem = this.getRecipesOffItem(itemId);
+    let recipesOfItem = this.getRecipesOfItem(itemId);
 
     if (recipesOfItem.length === 0) return false;
 
