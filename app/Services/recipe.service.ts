@@ -8,9 +8,7 @@ import { StackSize } from '../Common/stack-size.enum';
 
 @Injectable()
 export class RecipeService {
-  constructor(private itemService: ItemService) {}
-
-  getAllRecipes(): Recipe[] {
+  constructor(private itemService: ItemService) {
     let recipes: Recipe[] = [];
     let recipeData = Object.values(recipeJson) as RecipeJson[];
     let items: Item[] = this.itemService.getAllItems();
@@ -65,21 +63,31 @@ export class RecipeService {
       recipes.push(recipe);
     });
 
-    return recipes;
+    this.recipes = recipes;
   }
 
-  getRecipesOffItem(item: string): Recipe[] {
+  recipes: Recipe[] = [];
+
+  getAllRecipes(): Recipe[] {
+    return this.recipes;
+  }
+
+  getRecipesOffItem(itemId: string): Recipe[] {
     let recipes = this.getAllRecipes();
 
     let recipesOfItem = recipes.filter((r) =>
-      r.products.some((p) => p.item.id === item)
+      r.products.some((p) => p.item.id === itemId)
     );
 
     return recipesOfItem;
   }
 
-  isItemCraftable(item: string): boolean {
-    let recipesOfItem = this.getRecipesOffItem(item);
+  getDefualtRecipe(itemId: string): Recipe {
+
+  } 
+
+  isItemCraftable(itemId: string): boolean {
+    let recipesOfItem = this.getRecipesOffItem(itemId);
 
     if (recipesOfItem.length === 0) return false;
 

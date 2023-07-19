@@ -4,7 +4,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
-import { PlannerRowComponent } from './Components/planner-row/planner-row.component';
 import { PlannerV2Component } from './Components/planner-v2/planner-v2.component';
 import { PlannerComponent } from './Components/planner/planner.component';
 import { SimulatorComponent } from './Components/simulator/simulator.component';
@@ -25,7 +24,6 @@ const appRoutes: Routes = [
     SimulatorComponent,
     PlannerComponent,
     PlannerV2Component,
-    PlannerRowComponent,
   ],
   bootstrap: [AppComponent],
 })

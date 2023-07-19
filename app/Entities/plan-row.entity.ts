@@ -4,10 +4,10 @@ import { Recipe } from '../Entities/recipe.entity';
 
 export class PlanRow {
   id: number = 0;
-  isGoal: boolean = false
+  isGoal: boolean = false;
   step: number = 0;
   item: Item = new Item();
-  itemName: string = ""
+  itemId: string = '';
   recipes: Recipe[] = [];
   selectedRecipe: Recipe = new Recipe();
   selectedRecipeName: string = '';

@@ -2,11 +2,11 @@
   <table class="table">
     <thead>
       <tr>
-        <th>Step</th>
-        <th>Item</th>
+        <th scope="col">Step</th>
+        <th scope="col">Item</th>
         <th>Recipe</th>
         <th>Item/minute</th>
-        <ng-container>
+        <ng-container *ngIf="planGoal.itemId">
           <th>Products</th>
           <th>Ingridients</th>
           <th>Machines</th>
@@ -15,5 +15,42 @@
         </ng-container>
       </tr>
     </thead>
+    <tbody>
+      <tr *ngFor="let planRow of plan">
+        <td>{{ planRow.step }}</td>
+        <td>
+          <ng-container *ngIf="planRow.isGoal; else itemNotGoal">
+            <select
+              name="itemGoal"
+              id="itemGoal"
+              class="form-select"
+              [(ngModel)]="planRow.itemId"
+              (change)="selectItemGoal()"
+            >
+              <option value=""></option>
+              <option *ngFor="let item of items" [value]="item.id">
+                {{ item.name }}
+              </option>
+            </select>
+          </ng-container>
+          <ng-template #itemNotGoal> </ng-template>
+        </td>
+        <td>
+          <select
+            [name]="planRow.itemId + 'recipe'"
+            [id]="planRow.itemId + 'recipe'"
+            class="form-select"
+          >
+            <option
+              *ngFor="let recipe of planRow.recipes"
+              [value]="recipe.name"
+              [selected]="planRow.selectedRecipe.name === recipe.name"
+            >
+              {{ recipe.name }}
+            </option>
+          </select>
+        </td>
+      </tr>
+    </tbody>
   </table>
 </div>

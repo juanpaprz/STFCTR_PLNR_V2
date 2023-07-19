@@ -52,4 +52,12 @@ export class ItemService {
   getAllItems(): Item[] {
     return this.items;
   }
+
+  getItem(id: string): Item {
+    let item = this.items.find((i) => i.id === id);
+
+    if(!item) throw new Error('Item Not Found')
+
+    return item
+  }
 }
