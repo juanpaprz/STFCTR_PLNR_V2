@@ -48,7 +48,7 @@ export class PlannerComponent implements OnInit {
     let selectedItemPlan = this.items.find((i) => i.id === this.itemGoal);
     if (!selectedItemPlan) return;
     this.planGoal.item = selectedItemPlan;
-    this.planGoal.recipes = this.recipeService.getRecipesOffItem(this.itemGoal);
+    this.planGoal.recipes = this.recipeService.getRecipesOfItem(this.itemGoal);
     let defaultRecipe = this.planGoal.recipes.find((r) => !r.isAlternate);
 
     if (!defaultRecipe) defaultRecipe = this.planGoal.recipes[0];
@@ -196,7 +196,7 @@ export class PlannerComponent implements OnInit {
       return;
     }
 
-    let itemRecipes = this.recipeService.getRecipesOffItem(item.id);
+    let itemRecipes = this.recipeService.getRecipesOfItem(item.id);
     nextStep.recipes = itemRecipes;
 
     let defaultRecipe = nextStep.recipes.find((r) => !r.isAlternate);

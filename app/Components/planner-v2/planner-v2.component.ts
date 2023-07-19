@@ -39,10 +39,13 @@ export class PlannerV2Component implements OnInit {
 
   selectItemGoal() {
     this.planGoal.item = this.itemService.getItem(this.planGoal.itemId);
+    this.setRecipes(this.planGoal)
   }
 
   setRecipes(planRow: PlanRow): PlanRow {
     planRow.recipes = this.recipeService.getRecipesOfItem(planRow.itemId);
+
+    planRow.selectedRecipe = this.recipeService.getDefualtRecipe(planRow.itemId)
 
     return planRow;
   }
