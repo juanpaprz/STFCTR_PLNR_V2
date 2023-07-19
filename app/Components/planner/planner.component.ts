@@ -41,7 +41,7 @@ export class PlannerComponent implements OnInit {
     this.planGoal.step = 1;
     this.planGoal.id = 1;
 
-    console.log(this.items)
+    console.log(this.items);
   }
 
   selectItemGoal() {
@@ -53,7 +53,7 @@ export class PlannerComponent implements OnInit {
 
     if (!defaultRecipe) defaultRecipe = this.planGoal.recipes[0];
 
-    console.log(defaultRecipe)
+    console.log(defaultRecipe);
 
     this.planGoal.selectedRecipe = defaultRecipe;
     this.planGoal.selectedRecipeName = defaultRecipe.name;
@@ -163,14 +163,14 @@ export class PlannerComponent implements OnInit {
   }
 
   deleteChildren(id: number) {
-    let childrens = this.planSteps.filter((s) => s.fatherStep!.id === id);
+    /*let childrens = this.planSteps.filter((s) => s.fatherStep!.id === id);
     this.planSteps = this.planSteps.filter((s) => s.fatherStep!.id !== id);
 
     if (!childrens.length) return;
 
     childrens.forEach((c) => {
       this.deleteChildren(c.id);
-    });
+    });*/
   }
 
   createPlanSteps(item: Item, fatherStep: PlanRow) {
@@ -179,7 +179,7 @@ export class PlannerComponent implements OnInit {
     });
 
     nextStep.id = this.createStepId();
-    nextStep.fatherStep = fatherStep;
+    //nextStep.fatherStep = fatherStep;
 
     let itemCraft = fatherStep.selectedRecipe.ingridients.find(
       (i) => i.item.id === item.id

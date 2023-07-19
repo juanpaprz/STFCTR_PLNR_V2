@@ -4,8 +4,10 @@ import { Recipe } from '../Entities/recipe.entity';
 
 export class PlanRow {
   id: number = 0;
+  isGoal: boolean = false
   step: number = 0;
   item: Item = new Item();
+  itemName: string = ""
   recipes: Recipe[] = [];
   selectedRecipe: Recipe = new Recipe();
   selectedRecipeName: string = '';
@@ -14,7 +16,7 @@ export class PlanRow {
   machine: Machine = new Machine();
   machinesNumber: number = 0;
   powerConsumpsion: number = 0;
-  fatherStep: PlanRow | undefined = undefined;
+  fatherStep: PlanRow[] = [];
 
   constructor(value?: Partial<PlanRow>) {
     Object.assign(this, value);
