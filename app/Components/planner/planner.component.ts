@@ -40,6 +40,8 @@ export class PlannerComponent implements OnInit {
 
     this.planGoal.step = 1;
     this.planGoal.id = 1;
+
+    console.log(this.items)
   }
 
   selectItemGoal() {
@@ -49,7 +51,9 @@ export class PlannerComponent implements OnInit {
     this.planGoal.recipes = this.recipeService.getRecipesOffItem(this.itemGoal);
     let defaultRecipe = this.planGoal.recipes.find((r) => !r.isAlternate);
 
-    if (!defaultRecipe) return;
+    if (!defaultRecipe) defaultRecipe = this.planGoal.recipes[0];
+
+    console.log(defaultRecipe)
 
     this.planGoal.selectedRecipe = defaultRecipe;
     this.planGoal.selectedRecipeName = defaultRecipe.name;
