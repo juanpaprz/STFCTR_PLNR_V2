@@ -16,7 +16,7 @@ export class PlanRow {
   machine: Machine = new Machine();
   machinesNumber: number = 0;
   powerConsumpsion: number = 0;
-  fatherStep: PlanRow[] = [];
+  fatherSteps: PlanRow[] = [];
 
   constructor(value?: Partial<PlanRow>) {
     Object.assign(this, value);

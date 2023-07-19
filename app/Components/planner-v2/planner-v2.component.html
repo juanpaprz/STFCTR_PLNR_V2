@@ -33,28 +33,34 @@
               </option>
             </select>
           </ng-container>
-          <ng-template #itemNotGoal> </ng-template>
+          <ng-template #itemNotGoal>{{ planRow.item.name }} </ng-template>
         </td>
         <td>
-          <select
-            [name]="planRow.itemId + 'recipe'"
-            [id]="planRow.itemId + 'recipe'"
-            class="form-select"
-            [ngModel]="planRow.selectedRecipeId"
-          >
-            <option
-              *ngFor="let recipe of planRow.recipes"
-              [value]="recipe.id"
+          <ng-container *ngIf="!planRow.item.isResource">
+            <select
+              [name]="planRow.itemId + 'recipe'"
+              [id]="planRow.itemId + 'recipe'"
+              class="form-select"
+              [ngModel]="planRow.selectedRecipeId"
             >
-              {{ recipe.name }}
-            </option>
-          </select>
+              <option
+                *ngFor="let recipe of planRow.recipes"
+                [value]="recipe.id"
+              >
+                {{ recipe.name }}
+              </option>
+            </select></ng-container
+          >
         </td>
         <td>
           <ng-container *ngIf="planRow.isGoal; else ipmNotGoal">
-            <input type="number" class="form-control" [(ngModel)]="planRow.itemsPerMinute">
+            <input
+              type="number"
+              class="form-control"
+              [(ngModel)]="planRow.itemsPerMinute"
+            />
           </ng-container>
-          <ng-template #ipmNotGoal></ng-template>
+          <ng-template #ipmNotGoal>{{ planRow.itemsPerMinute }}</ng-template>
         </td>
       </tr>
     </tbody>

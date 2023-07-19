@@ -73,6 +73,14 @@ export class RecipeService {
     return this.recipes;
   }
 
+  getReicpe(recipeId: string): Recipe {
+    let recipe = this.recipes.find((r) => r.id === recipeId);
+
+    if (!recipe) throw new Error('Recipe Not found');
+
+    return recipe;
+  }
+
   getRecipesOfItem(itemId: string): Recipe[] {
     let recipes = this.getAllRecipes();
 
