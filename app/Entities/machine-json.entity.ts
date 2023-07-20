@@ -1,4 +1,4 @@
 export class MachineJson {
   name: string = '';
-  powerConsumpsion: number = 0;
+  powerConsumption: number = 0;
 }

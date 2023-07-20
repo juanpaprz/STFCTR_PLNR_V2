@@ -6,7 +6,7 @@
         <th scope="col">Item</th>
         <th>Recipe</th>
         <th>Item/minute</th>
-        <ng-container *ngIf="planGoal.itemId">
+        <ng-container *ngIf="planGoal.machine.name">
           <th>Products</th>
           <th>Ingridients</th>
           <th>Machines</th>
@@ -36,12 +36,15 @@
           <ng-template #itemNotGoal>{{ planRow.item.name }} </ng-template>
         </td>
         <td>
-          <ng-container *ngIf="!planRow.item.isResource">
+          <ng-container
+            *ngIf="!planRow.item.isResource && !planRow.isByProduct"
+          >
             <select
               [name]="planRow.itemId + 'recipe'"
               [id]="planRow.itemId + 'recipe'"
               class="form-select"
-              [ngModel]="planRow.selectedRecipeId"
+              [(ngModel)]="planRow.selectedRecipeId"
+              (change)="changeRecipe(planRow.id)"
             >
               <option
                 *ngFor="let recipe of planRow.recipes"
@@ -58,10 +61,61 @@
               type="number"
               class="form-control"
               [(ngModel)]="planRow.itemsPerMinute"
+              [disabled]="!planRow.itemId"
             />
           </ng-container>
-          <ng-template #ipmNotGoal>{{ planRow.itemsPerMinute }}</ng-template>
+          <ng-template #ipmNotGoal
+            >{{ planRow.itemsPerMinute }} per minute</ng-template
+          >
         </td>
+        <ng-container *ngIf="planGoal.machine.name">
+          <td>
+            <table class="table text-nowrap">
+              <tbody>
+                <tr *ngFor="let product of planRow.selectedRecipe.products">
+                  <td>{{ product.item.name }}</td>
+                  <td>
+                    {{ product.amountPerMinute }}/Min
+                    
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+          <td>
+            <table class="table text-nowrap">
+              <tbody>
+                <tr
+                  *ngFor="let ingridient of planRow.selectedRecipe.ingridients"
+                >
+                  <td>{{ ingridient.item.name }}</td>
+                  <td>
+                    {{ ingridient.amountPerMinute * planRow.machinesNumber }}/Min
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+          <td>
+            <div
+              class="d-flex justify-content-between"
+              *ngIf="!planRow.item.isResource && !planRow.isByProduct"
+            >
+              <div class="me-2">{{ planRow.machine.name }}</div>
+              <div>{{ planRow.machinesNumber }}</div>
+            </div>
+          </td>
+          <td class="text-nowrap">
+            <div *ngIf="!planRow.item.isResource && !planRow.isByProduct">
+              {{ planRow.powerConsumption }} MW/Min
+            </div>
+          </td>
+          <td>
+            <div *ngIf="!planRow.item.isResource && !planRow.isByProduct">
+              {{ planRow.overflow }}
+            </div>
+          </td>
+        </ng-container>
       </tr>
     </tbody>
   </table>

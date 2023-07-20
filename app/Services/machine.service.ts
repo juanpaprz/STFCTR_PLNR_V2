@@ -14,7 +14,7 @@ export class MachineService {
 
       let machine: Machine = {
         name: m.name,
-        powerConsumpsion: m.powerConsumpsion,
+        powerConsumption: m.powerConsumption,
       };
 
       machines.push(machine);
@@ -29,11 +29,11 @@ export class MachineService {
     return this.machines;
   }
 
-  getMachine(machineName: string): Machine | undefined {
+  getMachine(machineName: string): Machine {
     let machines = this.getAllMachines();
     let machine = machines.find((m) => m.name === machineName);
 
-    if (!machine) return;
+    if (!machine) throw new Error('Machine not found');
 
     return machine;
   }

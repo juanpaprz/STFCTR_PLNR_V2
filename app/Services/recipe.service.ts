@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ItemRecipe, Recipe } from '../Entities/recipe.entity';
 import * as recipeJson from '../Data/recipe.json';
-import { RecipeJson } from '../Entities/recipe-json.entity';
+import { ItemRecipeJson, RecipeJson } from '../Entities/recipe-json.entity';
 import { ItemService } from '../Services/item.service';
 import { Item } from '../Entities/item.entity';
 import { StackSize } from '../Common/stack-size.enum';
@@ -110,5 +110,28 @@ export class RecipeService {
     if (recipesOfItem.length === 0) return false;
 
     return true;
+  }
+
+  getItemCraftPerMinute(recipe: Recipe, itemId: string): number {
+    let itemToCraft = recipe.products.find((p) => p.item.id === itemId);
+
+    if (!itemToCraft)
+      throw new Error(`Item: ${itemId}. Not found in recipe: ${recipe.name}`);
+
+    return itemToCraft.amountPerMinute;
+  }
+
+  getRecipeByProducts(recipe: Recipe, itemId: string): ItemRecipe[] {
+    let byProducts = recipe.products.filter((p) => p.item.id !== itemId);
+    return byProducts;
+  }
+
+  getIngridientItemCraftPerMinute(recipe: Recipe, itemId: string): number {
+    let itemIngridient = recipe.ingridients.find((i) => i.item.id === itemId);
+
+    if (!itemIngridient)
+      throw new Error(`Item: ${itemId}. Not found in recipe: ${recipe.name}`);
+
+    return itemIngridient.amountPerMinute;
   }
 }
