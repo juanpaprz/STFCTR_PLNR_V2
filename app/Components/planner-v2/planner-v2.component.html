@@ -6,7 +6,7 @@
         <th (click)="addItemGoal()" class="add-item-goal">Item</th>
         <th>Recipe</th>
         <th>Item/minute</th>
-        <ng-container *ngIf="planGoal.machine.name">
+        <ng-container *ngIf="">
           <th>Products</th>
           <th>Ingridients</th>
           <th>Machines</th>
@@ -17,7 +17,19 @@
     </thead>
     <tbody>
       <tr *ngFor="let planRow of plan">
-        <td>{{ planRow.step }}</td>
+        <td>
+          <div class="d-flex justify-content-between">
+            <div>{{ planRow.step }}</div>
+            <div [ngClass]="planGoals.length > 1 ? 'deletable' : ''">
+              <button
+                class="btn btn-danger btn-sm"
+                (click)="deletePlanGoal(planRow.id)"
+              >
+                X
+              </button>
+            </div>
+          </div>
+        </td>
         <td>
           <ng-container *ngIf="planRow.isGoal; else itemNotGoal">
             <select
@@ -25,7 +37,7 @@
               id="itemGoal"
               class="form-select"
               [(ngModel)]="planRow.itemId"
-              (change)="selectItemGoal()"
+              (change)="selectItemGoal(planRow.id)"
             >
               <option value=""></option>
               <option *ngFor="let item of items" [value]="item.id">
@@ -68,7 +80,7 @@
             >{{ planRow.itemsPerMinute }}/Min</ng-template
           >
         </td>
-        <ng-container *ngIf="planGoal.machine.name">
+        <ng-container *ngIf="">
           <td>
             <table class="table text-nowrap">
               <tbody>

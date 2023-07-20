@@ -18,8 +18,7 @@ export class PlannerV2Component implements OnInit {
   ) {}
 
   plan: PlanRow[] = [];
-  planGoal: PlanRow = new PlanRow();
-
+  planGoals: PlanRow[] = [];
   items: Item[] = [];
 
   ngOnInit() {
@@ -31,7 +30,7 @@ export class PlannerV2Component implements OnInit {
       })
     );
 
-    this.planGoal = this.plan.find((p) => p.isGoal)!;
+    this.planGoals = this.plan;
 
     this.items = this.itemService.getAllItems();
     this.items = this.items.filter((i) =>
@@ -39,18 +38,46 @@ export class PlannerV2Component implements OnInit {
     );
   }
 
-  addItemGoal(){
-    
+  addItemGoal() {
+    let newPlanGoal = new PlanRow({
+      id: this.getNewId(),
+      isGoal: true,
+      step: 1,
+    });
+    this.plan.push(newPlanGoal);
+    this.planGoals.push(newPlanGoal);
   }
 
-  selectItemGoal() {
-    if (!this.planGoal.itemId) return this.deleteChildrenStep(this.planGoal);
-    this.planGoal.item = this.itemService.getItem(this.planGoal.itemId);
-    this.setDefaultRecipe(this.planGoal);
-    this.deleteChildrenStep(this.planGoal);
-    this.generatePlanByProducts(this.planGoal);
-    this.forEachIngridient(this.planGoal);
-    this.calculatePlanStepValues(this.planGoal);
+  deletePlanGoal(planId: number) {
+    let planRow = this.plan.find((p) => p.id === planId);
+
+    if (!planRow) throw new Error('Plan goal not found');
+    if (!planRow.isGoal) throw new Error('Row is not goal');
+    if (this.planGoals.length <= 1) throw new Error("Can´t delete all goals")
+
+    this.plan = this.plan.filter(p => p.id !== planId)
+    this.planGoals = this.plan.filter(p => p.isGoal)
+    this.deleteChildrenStep(planRow)
+  }
+
+  selectItemGoal(planId: number) {
+    let planRow = this.plan.find((p) => p.id === planId);
+
+    if (!planRow) throw new Error('Plan goal not found');
+    if (!planRow.isGoal) throw new Error('Row is not Goal');
+
+    if (!planRow.itemId) return this.deleteChildrenStep(planRow);
+    planRow.item = this.itemService.getItem(planRow.itemId);
+    this.setDefaultRecipe(planRow);
+
+    this.createPlan(planRow);
+  }
+
+  createPlan(planRow: PlanRow) {
+    this.deleteChildrenStep(planRow);
+    this.generatePlanByProducts(planRow);
+    this.forEachIngridient(planRow);
+    this.forEachPlanGoal();
   }
 
   setDefaultRecipe(planRow: PlanRow) {
@@ -71,10 +98,7 @@ export class PlannerV2Component implements OnInit {
     );
     this.setRecipeExtraData(planRow);
 
-    this.deleteChildrenStep(planRow);
-    this.generatePlanByProducts(planRow);
-    this.forEachIngridient(planRow);
-    this.calculatePlanStepValues(this.planGoal);
+    this.createPlan(planRow);
   }
 
   setRecipeExtraData(planRow: PlanRow) {
@@ -180,7 +204,14 @@ export class PlannerV2Component implements OnInit {
   handleKeyboardEvent(event: KeyboardEvent) {
     if (event.key !== 'Enter') return;
 
-    this.calculatePlanStepValues(this.planGoal);
+    this.forEachPlanGoal();
+  }
+
+  forEachPlanGoal() {
+    let planGoals = this.plan.filter((p) => p.isGoal);
+    planGoals.forEach((p) => {
+      this.calculatePlanStepValues(p);
+    });
   }
 
   calculatePlanStepValues(planRow: PlanRow) {

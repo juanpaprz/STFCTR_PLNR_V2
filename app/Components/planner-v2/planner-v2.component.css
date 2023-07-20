@@ -6,3 +6,11 @@
 .add-item-goal:active {
   background-color: #1a1d20;
 }
+
+.btn-danger {
+  visibility: hidden;
+}
+
+.deletable:hover .btn-danger {
+  visibility: visible;
+}
