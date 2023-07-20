@@ -2,8 +2,8 @@
   <table class="table">
     <thead>
       <tr>
-        <th scope="col">Step</th>
-        <th scope="col">Item</th>
+        <th>Step</th>
+        <th (click)="addItemGoal()" class="add-item-goal">Item</th>
         <th>Recipe</th>
         <th>Item/minute</th>
         <ng-container *ngIf="planGoal.machine.name">
@@ -65,7 +65,7 @@
             />
           </ng-container>
           <ng-template #ipmNotGoal
-            >{{ planRow.itemsPerMinute }} per minute</ng-template
+            >{{ planRow.itemsPerMinute }}/Min</ng-template
           >
         </td>
         <ng-container *ngIf="planGoal.machine.name">
@@ -74,10 +74,7 @@
               <tbody>
                 <tr *ngFor="let product of planRow.selectedRecipe.products">
                   <td>{{ product.item.name }}</td>
-                  <td>
-                    {{ product.amountPerMinute }}/Min
-                    
-                  </td>
+                  <td>{{ product.amountPerMinute }}/Min</td>
                 </tr>
               </tbody>
             </table>
@@ -90,7 +87,9 @@
                 >
                   <td>{{ ingridient.item.name }}</td>
                   <td>
-                    {{ ingridient.amountPerMinute * planRow.machinesNumber }}/Min
+                    {{
+                      ingridient.amountPerMinute * planRow.machinesNumber
+                    }}/Min
                   </td>
                 </tr>
               </tbody>

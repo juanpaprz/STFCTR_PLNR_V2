@@ -1,0 +1,8 @@
+.add-item-goal:hover {
+  cursor: pointer;
+  background-color: #2b3035;
+}
+
+.add-item-goal:active {
+  background-color: #1a1d20;
+}

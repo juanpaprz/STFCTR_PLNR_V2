@@ -39,6 +39,10 @@ export class PlannerV2Component implements OnInit {
     );
   }
 
+  addItemGoal(){
+    
+  }
+
   selectItemGoal() {
     if (!this.planGoal.itemId) return this.deleteChildrenStep(this.planGoal);
     this.planGoal.item = this.itemService.getItem(this.planGoal.itemId);
@@ -46,6 +50,7 @@ export class PlannerV2Component implements OnInit {
     this.deleteChildrenStep(this.planGoal);
     this.generatePlanByProducts(this.planGoal);
     this.forEachIngridient(this.planGoal);
+    this.calculatePlanStepValues(this.planGoal);
   }
 
   setDefaultRecipe(planRow: PlanRow) {
@@ -69,6 +74,7 @@ export class PlannerV2Component implements OnInit {
     this.deleteChildrenStep(planRow);
     this.generatePlanByProducts(planRow);
     this.forEachIngridient(planRow);
+    this.calculatePlanStepValues(this.planGoal);
   }
 
   setRecipeExtraData(planRow: PlanRow) {
