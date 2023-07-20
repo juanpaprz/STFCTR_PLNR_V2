@@ -1,0 +1,51 @@
+<table class="table">
+  <thead class="text-center">
+    <tr>
+      <th colspan="3"><h5>Total</h5></th>
+    </tr>
+    <tr>
+      <th>Inputs</th>
+      <th>Outputs</th>
+      <th>Machines</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <table class="table">
+          <tbody>
+            <tr *ngFor="let input of planTotal.inputs">
+              <td>{{ input.name }}</td>
+              <td>{{ input.amount }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </td>
+      <td>
+        <table class="table">
+          <tbody>
+            <tr *ngFor="let output of planTotal.outputs">
+              <td>{{ output.name }}</td>
+              <td>{{ output.amount }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </td>
+      <td>
+        <table class="table">
+          <tbody>
+            <tr *ngFor="let machine of planTotal.machines">
+              <td>{{ machine.name }}</td>
+              <td>{{ machine.amount }}</td>
+              <td>{{ machine.totalPower }} MW/Min</td>
+            </tr>
+          </tbody>
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <th colspan="2" class="text-end">Total:</th>
+      <td>{{ planTotal.totalPowerConsumption }} MW/Min</td>
+    </tr>
+  </tbody>
+</table>

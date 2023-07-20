@@ -1,9 +1,10 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
 import { ItemService } from '../../Services/item.service';
 import { Item } from '../../Entities/item.entity';
 import { PlanRow } from '../../Entities/plan-row.entity';
 import { RecipeService } from '../../Services/recipe.service';
 import { MachineService } from '../../Services/machine.service';
+import { PlannerTotalComponent } from '../../Components/planner-total/planner-total.component';
 
 @Component({
   selector: 'app-planner-v2',
@@ -16,6 +17,9 @@ export class PlannerV2Component implements OnInit {
     private recipeService: RecipeService,
     private machineService: MachineService
   ) {}
+
+  @ViewChild(PlannerTotalComponent) totalPlan: PlannerTotalComponent =
+    new PlannerTotalComponent();
 
   plan: PlanRow[] = [];
   planGoals: PlanRow[] = [];
@@ -223,6 +227,7 @@ export class PlannerV2Component implements OnInit {
       this.calculatePlanStepValues(p);
     });
     this.calculatePlanByProductsValue();
+    this.plan.sort((a, b) => a.step - b.step);
   }
 
   calculatePlanStepValues(planRow: PlanRow) {
