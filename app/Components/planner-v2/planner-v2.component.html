@@ -6,7 +6,7 @@
         <th (click)="addItemGoal()" class="add-item-goal">Item</th>
         <th>Recipe</th>
         <th>Item/minute</th>
-        <ng-container *ngIf="">
+        <ng-container *ngIf="isPlanCreated()">
           <th>Products</th>
           <th>Ingridients</th>
           <th>Machines</th>
@@ -80,7 +80,7 @@
             >{{ planRow.itemsPerMinute }}/Min</ng-template
           >
         </td>
-        <ng-container *ngIf="">
+        <ng-container *ngIf="isPlanCreated()">
           <td>
             <table class="table text-nowrap">
               <tbody>

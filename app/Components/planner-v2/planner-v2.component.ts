@@ -30,7 +30,7 @@ export class PlannerV2Component implements OnInit {
       })
     );
 
-    this.planGoals = this.plan;
+    this.planGoals = this.plan.filter((p) => p.isGoal);
 
     this.items = this.itemService.getAllItems();
     this.items = this.items.filter((i) =>
@@ -45,7 +45,9 @@ export class PlannerV2Component implements OnInit {
       step: 1,
     });
     this.plan.push(newPlanGoal);
-    this.planGoals.push(newPlanGoal);
+    this.planGoals = this.plan.filter((p) => p.isGoal);
+
+    this.plan.sort((a, b) => a.step - b.step);
   }
 
   deletePlanGoal(planId: number) {
@@ -53,11 +55,15 @@ export class PlannerV2Component implements OnInit {
 
     if (!planRow) throw new Error('Plan goal not found');
     if (!planRow.isGoal) throw new Error('Row is not goal');
-    if (this.planGoals.length <= 1) throw new Error("Can´t delete all goals")
+    if (this.planGoals.length <= 1) throw new Error('Can´t delete all goals');
 
-    this.plan = this.plan.filter(p => p.id !== planId)
-    this.planGoals = this.plan.filter(p => p.isGoal)
-    this.deleteChildrenStep(planRow)
+    this.plan = this.plan.filter((p) => p.id !== planId);
+    this.planGoals = this.plan.filter((p) => p.isGoal);
+    this.deleteChildrenStep(planRow);
+  }
+
+  isPlanCreated(): boolean {
+    return this.planGoals.some((p) => p.machine.name);
   }
 
   selectItemGoal(planId: number) {
@@ -181,7 +187,9 @@ export class PlannerV2Component implements OnInit {
   addNewStep(planRow: PlanRow): boolean {
     let exists = this.plan.find(
       (p) =>
-        p.itemId === planRow.itemId && p.isByProduct === planRow.isByProduct
+        p.itemId === planRow.itemId &&
+        p.isByProduct === planRow.isByProduct &&
+        !p.isGoal
     );
 
     if (!exists) {
@@ -190,7 +198,9 @@ export class PlannerV2Component implements OnInit {
     }
 
     let fatherExists = exists.fatherSteps.find(
-      (f) => f.itemId === planRow.fatherSteps[0].itemId
+      (f) =>
+        f.itemId === planRow.fatherSteps[0].itemId &&
+        f.isGoal === planRow.fatherSteps[0].isGoal
     );
 
     if (fatherExists) return false;
@@ -212,6 +222,7 @@ export class PlannerV2Component implements OnInit {
     planGoals.forEach((p) => {
       this.calculatePlanStepValues(p);
     });
+    this.calculatePlanByProductsValue();
   }
 
   calculatePlanStepValues(planRow: PlanRow) {
@@ -224,6 +235,9 @@ export class PlannerV2Component implements OnInit {
     planRow.machinesNumber = machinesNumber;
     planRow.overflow =
       machinesNumber * planRow.itemCraftPerMinute - itemsPerMinute;
+
+    planRow.powerConsumption =
+      machinesNumber * planRow.machine.powerConsumption;
 
     let rowChildren = this.plan.filter((p) =>
       p.fatherSteps.some((f) => f === planRow && !p.isByProduct)
@@ -244,5 +258,20 @@ export class PlannerV2Component implements OnInit {
       return count + f.machinesNumber * craftPerMinute;
     }, 0);
     return itemsPerMinute;
+  }
+
+  calculatePlanByProductsValue() {
+    let byProducts = this.plan.filter((p) => p.isByProduct);
+    byProducts.forEach((p) => {
+      let craftPerMinute = p.fatherSteps.reduce((cont, f) => {
+        let fatherPerMinute = this.recipeService.getItemCraftPerMinute(
+          f.selectedRecipe,
+          p.itemId
+        );
+        return cont + fatherPerMinute * f.machinesNumber;
+      }, 0);
+
+      p.itemsPerMinute = craftPerMinute;
+    });
   }
 }
