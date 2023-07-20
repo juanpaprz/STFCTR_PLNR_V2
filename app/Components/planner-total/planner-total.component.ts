@@ -10,7 +10,7 @@ import { PlanRow } from '../../Entities/plan-row.entity';
 export class PlannerTotalComponent implements OnInit, OnChanges {
   constructor() {}
 
-  @Input() set plan(plan: PlanRow[]) {}
+  @Input() plan: PlanRow[] = [];
 
   planTotal: PlanTotal = new PlanTotal();
 
