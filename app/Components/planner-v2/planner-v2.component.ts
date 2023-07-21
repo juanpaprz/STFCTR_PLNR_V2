@@ -18,9 +18,6 @@ export class PlannerV2Component implements OnInit {
     private machineService: MachineService
   ) {}
 
-  @ViewChild(PlannerTotalComponent) totalPlan: PlannerTotalComponent =
-    new PlannerTotalComponent();
-
   plan: PlanRow[] = [];
   planGoals: PlanRow[] = [];
   items: Item[] = [];
@@ -228,6 +225,7 @@ export class PlannerV2Component implements OnInit {
     });
     this.calculatePlanByProductsValue();
     this.plan.sort((a, b) => a.step - b.step);
+    this.plan = this.plan.slice();
   }
 
   calculatePlanStepValues(planRow: PlanRow) {
@@ -278,5 +276,11 @@ export class PlannerV2Component implements OnInit {
 
       p.itemsPerMinute = craftPerMinute;
     });
+  }
+
+  activeteRow(planRow: PlanRow) {
+    this.plan.forEach((p) => (p.rowClasses = { 'table-dark': false }));
+    planRow.rowClasses = { 'table-dark': true };
+    planRow.fatherSteps.forEach((f) => (f.rowClasses = { 'table-dark': true }));
   }
 }

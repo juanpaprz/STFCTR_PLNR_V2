@@ -1,0 +1,118 @@
+<button class="btn btn-info btn-sm" (click)="createImg()">PNG</button>
+
+<div class="text-nowrap visually-hidden">
+  <table class="table text-start" #dataTable>
+    <thead>
+      <tr class="text-center">
+        <th colspan="8">
+          <h4>{{ planName }}</h4>
+        </th>
+      </tr>
+      <tr>
+        <th>Step</th>
+        <th>Item</th>
+        <th>Recipe</th>
+        <th>Item/Min</th>
+        <th>Products</th>
+        <th>Ingridients</th>
+        <th>Machine</th>
+        <th>Overflow</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let p of plan">
+        <th>{{ p.step }}</th>
+        <td>
+          {{ p.item.name }}
+        </td>
+        <td>
+          {{ p.selectedRecipe.name }}
+        </td>
+        <td>{{ p.itemsPerMinute }}/Min</td>
+        <td>
+          <table class="table">
+            <tbody>
+              <tr *ngFor="let product of p.selectedRecipe.products">
+                <td>{{ product.item.name }}</td>
+                <td class="text-end">{{ product.amountPerMinute }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </td>
+        <td>
+          <table class="table">
+            <tbody>
+              <tr *ngFor="let ingridient of p.selectedRecipe.ingridients">
+                <td>{{ ingridient.item.name }}</td>
+                <td class="text-end">{{ ingridient.amountPerMinute }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </td>
+        <td>
+          <div
+            class="d-flex justify-content-between"
+            *ngIf="!p.item.isResource && !p.isByProduct"
+          >
+            <p>{{ p.machine.name }}</p>
+            <small>{{ p.machinesNumber }}</small>
+          </div>
+        </td>
+        <td>
+          <p *ngIf="!p.item.isResource && !p.isByProduct">
+            {{ p.overflow }}/Min
+          </p>
+        </td>
+      </tr>
+      <tr class="text-center">
+        <th colspan="8"><h6>TOTAL</h6></th>
+      </tr>
+      <tr class="text-center">
+        <th colspan="2">Inputs</th>
+        <th colspan="3">Outputs</th>
+        <th colspan="3">Machines</th>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <table class="table">
+            <tbody>
+              <tr *ngFor="let input of planTotal.inputs">
+                <td>{{ input.name }}</td>
+                <td class="text-end">{{ input.amount }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </td>
+        <td colspan="3">
+          <table class="table">
+            <tbody>
+              <tr *ngFor="let output of planTotal.outputs">
+                <td>{{ output.name }}</td>
+                <td class="text-end">{{ output.amount }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </td>
+        <td colspan="3">
+          <table class="table">
+            <tbody>
+              <tr *ngFor="let machine of planTotal.machines">
+                <td>{{ machine.name }}</td>
+                <td class="text-center">{{ machine.amount }}</td>
+                <td class="text-end text-nowrap">
+                  {{ machine.totalPower }} MW/Min
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <th colspan="7" class="text-end">Total Power Consumption</th>
+        <td class="text-end text-nowrap">
+          {{ planTotal.totalPowerConsumption }} MW/Min
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

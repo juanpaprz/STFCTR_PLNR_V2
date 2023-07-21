@@ -17,6 +17,10 @@ export class PlannerTotalComponent implements OnInit, OnChanges {
   ngOnInit() {}
 
   ngOnChanges() {
+    this.createTotalPlanValues()
+  }
+
+  createTotalPlanValues() {
     this.planTotal = new PlanTotal();
     let planInputs = this.plan.filter((p) => p.item.isResource);
     let planOutpus = this.plan.filter((p) => p.isGoal || p.isByProduct);

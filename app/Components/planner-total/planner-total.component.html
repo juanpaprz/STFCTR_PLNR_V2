@@ -16,7 +16,7 @@
           <tbody>
             <tr *ngFor="let input of planTotal.inputs">
               <td>{{ input.name }}</td>
-              <td>{{ input.amount }}</td>
+              <td>{{ input.amount }}/Min</td>
             </tr>
           </tbody>
         </table>
@@ -26,7 +26,7 @@
           <tbody>
             <tr *ngFor="let output of planTotal.outputs">
               <td>{{ output.name }}</td>
-              <td>{{ output.amount }}</td>
+              <td>{{ output.amount }}/Min</td>
             </tr>
           </tbody>
         </table>
@@ -49,3 +49,6 @@
     </tr>
   </tbody>
 </table>
+<div class="text-end my-2">
+  <app-export-excel [plan]="plan" [planTotal]="planTotal"></app-export-excel>
+</div>

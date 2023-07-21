@@ -1,5 +1,5 @@
 <div class="container fluid my-4">
-  <div class="mb-2" *ngIf="isPlanCreated()">
+  <div class="" *ngIf="isPlanCreated()">
     <app-planner-total [plan]="plan"></app-planner-total>
   </div>
   <table class="table">
@@ -19,7 +19,11 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let planRow of plan">
+      <tr
+        *ngFor="let planRow of plan"
+        [ngClass]="planRow.rowClasses"
+        (click)="activeteRow(planRow)"
+      >
         <td>
           <div class="d-flex justify-content-between">
             <div>{{ planRow.step }}</div>
@@ -85,7 +89,7 @@
         </td>
         <ng-container *ngIf="isPlanCreated()">
           <td>
-            <table class="table text-nowrap">
+            <table class="table">
               <tbody>
                 <tr *ngFor="let product of planRow.selectedRecipe.products">
                   <td>{{ product.item.name }}</td>
@@ -95,7 +99,7 @@
             </table>
           </td>
           <td>
-            <table class="table text-nowrap">
+            <table class="table">
               <tbody>
                 <tr
                   *ngFor="let ingridient of planRow.selectedRecipe.ingridients"

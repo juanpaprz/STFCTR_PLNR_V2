@@ -20,6 +20,7 @@ export class PlanRow {
   machinesNumber: number = 0;
   powerConsumption: number = 0;
   fatherSteps: PlanRow[] = [];
+  rowClasses: object = {}
 
   constructor(value?: Partial<PlanRow>) {
     Object.assign(this, value);
