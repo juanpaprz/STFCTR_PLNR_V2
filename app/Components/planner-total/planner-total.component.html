@@ -1,5 +1,18 @@
-<div class="my-2">
+<div class="my-1">
   <app-comparative [planTotal]="planTotal"></app-comparative>
+</div>
+<div
+  class="
+    d-flex
+    justify-content-between
+    my-2
+    bg-body-secondary
+    p-3
+    border border-dark
+  "
+>
+  <button class="btn btn-success btn-sm">Compare</button>
+  <app-export-excel [plan]="plan" [planTotal]="planTotal"></app-export-excel>
 </div>
 
 <table class="table">
@@ -53,6 +66,3 @@
     </tr>
   </tbody>
 </table>
-<div class="text-end my-2">
-  <app-export-excel [plan]="plan" [planTotal]="planTotal"></app-export-excel>
-</div>

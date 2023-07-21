@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { PlanTotal } from '../../Entities/plan-total.entity';
+import { PlanTotal, TotalRow } from '../../Entities/plan-total.entity';
 
 @Component({
   selector: 'app-comparative',
@@ -9,25 +9,51 @@ import { PlanTotal } from '../../Entities/plan-total.entity';
 export class ComparativeComponent implements OnInit {
   constructor() {}
 
-  planComparative: PlanComaprative[] = []
-
   @Input() planTotal: PlanTotal = new PlanTotal();
 
+  plansComparative: PlanComparative[] = [];
+
   ngOnInit() {
-    this.addComparative();
+    this.createCompartive();
   }
 
-  addComparative() {
-    let inputComp = this.planTotal.inputs.map(i => {
-      let comp: PlanComaprative = {
-        [i.name]: i.amount
-      }
-      return comp
-    })
-    
+  createCompartive() {
+    let totalRows = [
+      ...this.planTotal.inputs,
+      ...this.planTotal.outputs,
+      new TotalRow({
+        name: 'Power',
+        amount: this.planTotal.totalPowerConsumption,
+      }),
+    ];
+
+    let comparatives = totalRows.map((t) => {
+      return new PlanComparative({
+        key: t.name,
+        values: [t.amount],
+      });
+    });
+
+    comparatives.forEach((c) => {
+      this.addComparative(c);
+    });
+  }
+
+  addComparative(comparative: PlanComparative) {
+    let exists = this.plansComparative.find((p) => p.key === comparative.key);
+
+    if (!exists) return this.plansComparative.push(comparative);
+
+    return exists.values.push(...comparative.values);
   }
 }
 
-export type PlanComaprative = {
-  [key: string]: number;
-};
+export class PlanComparative {
+  planId: number = 0;
+  key: string = '';
+  values: number[] = [];
+
+  constructor(value?: Partial<PlanComparative>) {
+    Object.assign(this, value);
+  }
+}

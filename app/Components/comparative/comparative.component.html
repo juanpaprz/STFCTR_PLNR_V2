@@ -1,6 +1,9 @@
 <table class="table">
-  <thead>
-    <tr></tr>
-  </thead>
-  <tbody></tbody>
+  <thead></thead>
+  <tbody>
+    <tr *ngFor="let plan of plansComparative">
+      <th>{{ plan.key }}</th>
+      <td *ngFor="let value of plan.values">{{ value }}</td>
+    </tr>
+  </tbody>
 </table>
