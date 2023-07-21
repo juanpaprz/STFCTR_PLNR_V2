@@ -9,31 +9,25 @@ import { PlanTotal } from '../../Entities/plan-total.entity';
 export class ComparativeComponent implements OnInit {
   constructor() {}
 
+  planComparative: PlanComaprative[] = []
+
   @Input() planTotal: PlanTotal = new PlanTotal();
 
-  comparative: object[] = [];
-
-  ngOnInit() {}
+  ngOnInit() {
+    this.addComparative();
+  }
 
   addComparative() {
-    let comparativeInputs = this.planTotal.inputs.reduce((acc, i) => {
-      return acc.set(i.name, i.amount);
-    }, new Map());
-
-    let comparativeOutputs = this.planTotal.outputs.reduce((acc, o) => {
-      return acc.set(o.name, o.amount);
-    }, new Map());
-
-    let comparativePower = new Map([
-      ['Power', this.planTotal.totalPowerConsumption],
-    ]);
-
-    let mergedMaps = new Map([
-      ...comparativeInputs,
-      ...comparativeOutputs,
-      ...comparativePower,
-    ]);
-
-    let comparative = Object.fromEntries(mergedMaps);
+    let inputComp = this.planTotal.inputs.map(i => {
+      let comp: PlanComaprative = {
+        [i.name]: i.amount
+      }
+      return comp
+    })
+    
   }
 }
+
+export type PlanComaprative = {
+  [key: string]: number;
+};
