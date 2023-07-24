@@ -2,8 +2,15 @@
   <thead></thead>
   <tbody>
     <tr *ngFor="let plan of plansComparative">
-      <th>{{ plan.key }}</th>
-      <td *ngFor="let value of plan.values">{{ value }}</td>
+      <ng-container *ngIf="hasValue(plan)">
+        <th>{{ plan.key }}</th>
+        <td
+          *ngFor="let value of plan.values"
+          [ngClass]="setBetterOptionClass(plan, value)"
+        >
+          {{ value }}
+        </td></ng-container
+      >
     </tr>
   </tbody>
 </table>

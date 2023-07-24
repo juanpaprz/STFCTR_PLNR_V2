@@ -1,4 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Item } from '../../Entities/item.entity';
+import { ItemService } from '../../Services/item.service';
 import { PlanTotal, TotalRow } from '../../Entities/plan-total.entity';
 
 @Component({
@@ -7,13 +9,33 @@ import { PlanTotal, TotalRow } from '../../Entities/plan-total.entity';
   styleUrls: ['./comparative.component.css'],
 })
 export class ComparativeComponent implements OnInit {
-  constructor() {}
+  constructor(private itemService: ItemService) {}
 
   @Input() planTotal: PlanTotal = new PlanTotal();
 
   plansComparative: PlanComparative[] = [];
 
-  ngOnInit() {}
+  resources: Item[] = [];
+
+  ngOnInit() {
+    this.resources = this.itemService.getResources();
+    this.resources.push(
+      new Item({
+        id: 'power',
+        name: 'Power',
+        isResource: true,
+      })
+    );
+
+    this.resources.forEach((r) => {
+      this.plansComparative.push(
+        new PlanComparative({
+          key: r.name,
+          values: [],
+        })
+      );
+    });
+  }
 
   createCompartive() {
     let totalRows = [
@@ -32,22 +54,26 @@ export class ComparativeComponent implements OnInit {
       });
     });
 
-    comparatives.forEach((c) => {
-      this.addComparative(c);
+    this.plansComparative.forEach((c) => {
+      let comparative = comparatives.find((p) => p.key === c.key);
+
+      if (!comparative) return c.values.push(0);
+
+      c.values.push(comparative.values[0]);
     });
   }
 
-  addComparative(comparative: PlanComparative) {
-    let exists = this.plansComparative.find((p) => p.key === comparative.key);
+  hasValue(planComparative: PlanComparative): boolean {
+    return planComparative.values.some(v => v > 0)
+  }
 
-    if (!exists) return this.plansComparative.push(comparative);
-
-    return exists.values.push(...comparative.values);
+  setBetterOptionClass(planComparative: PlanComparative, values: number): {} {
+    let isBetterOption = !planComparative.values.some(v => v <= values)
+    return {"text-success": isBetterOption}
   }
 }
 
 export class PlanComparative {
-  planId: number = 0;
   key: string = '';
   values: number[] = [];
 

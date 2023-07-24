@@ -60,4 +60,8 @@ export class ItemService {
 
     return item;
   }
+
+  getResources(): Item[] {
+    return this.items.filter((i) => i.isResource);
+  }
 }
