@@ -5,7 +5,7 @@
       <th
         class="selectable"
         *ngFor="let value of plansComparative[0].values; let i = index"
-        (click)="onPlanSelected()"
+        (click)="onPlanSelected(i)"
       >
         {{ i + 1 }}
       </th>

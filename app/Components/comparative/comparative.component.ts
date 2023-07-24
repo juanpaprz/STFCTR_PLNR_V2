@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Item } from '../../Entities/item.entity';
 import { ItemService } from '../../Services/item.service';
 import { PlanTotal, TotalRow } from '../../Entities/plan-total.entity';
-import { PlanRow } from 'app/Entities/plan-row.entity';
+import { PlanRow } from '../../Entities/plan-row.entity';
 
 @Component({
   selector: 'app-comparative',
@@ -76,12 +76,12 @@ export class ComparativeComponent implements OnInit {
 
   setBetterOptionClass(planComparative: PlanComparative, value: number): {} {
     let isBetterOption = !planComparative.values.some((v) => v < value);
-    console.log(isBetterOption, value);
     return { 'text-success': isBetterOption };
   }
 
   onPlanSelected(index: number) {
     let plan: PlanRow[] = this.plansComparative[0].plans[index];
+    console.log(plan);
     this.selectPlanEvent.emit(plan);
   }
 }
