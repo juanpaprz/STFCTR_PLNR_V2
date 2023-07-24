@@ -1,4 +1,12 @@
-import { Component, Input, OnChanges, OnInit, ViewChild } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnInit,
+  Output,
+  ViewChild,
+} from '@angular/core';
 import { PlanTotal, TotalRow } from '../../Entities/plan-total.entity';
 import { PlanRow } from '../../Entities/plan-row.entity';
 import { ComparativeComponent } from '../../Components/comparative/comparative.component';
@@ -10,6 +18,8 @@ import { ComparativeComponent } from '../../Components/comparative/comparative.c
 })
 export class PlannerTotalComponent implements OnInit, OnChanges {
   constructor() {}
+
+  @Output() sendPlanSelectedEvent: EventEmitter<PlanRow[]> = new EventEmitter();
 
   @Input() plan: PlanRow[] = [];
 
@@ -75,5 +85,9 @@ export class PlannerTotalComponent implements OnInit, OnChanges {
 
   addComparative(comparative: ComparativeComponent) {
     comparative.createCompartive();
+  }
+
+  sendSelectedPlan(selectedPlan: PlanRow[]) {
+    this.sendPlanSelectedEvent.emit(selectedPlan);
   }
 }

@@ -1,5 +1,9 @@
 <div class="my-1">
-  <app-comparative #comparative [planTotal]="planTotal"></app-comparative>
+  <app-comparative
+    #comparative
+    [planTotal]="planTotal"
+    (selectPlanEvent)="sendSelectedPlan($event)"
+  ></app-comparative>
 </div>
 <div
   class="

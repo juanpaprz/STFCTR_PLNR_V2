@@ -1,6 +1,9 @@
 <div class="container fluid my-4">
   <div class="" *ngIf="isPlanCreated()">
-    <app-planner-total [plan]="plan"></app-planner-total>
+    <app-planner-total
+      [plan]="plan"
+      (sendPlanSelectedEvent)="setPlanSelected($event)"
+    ></app-planner-total>
   </div>
   <table class="table">
     <thead>

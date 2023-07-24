@@ -4,7 +4,7 @@ import { Item } from '../../Entities/item.entity';
 import { PlanRow } from '../../Entities/plan-row.entity';
 import { RecipeService } from '../../Services/recipe.service';
 import { MachineService } from '../../Services/machine.service';
-import { PlannerTotalComponent } from '../../Components/planner-total/planner-total.component';
+import { PlanTotal } from 'app/Entities/plan-total.entity';
 
 @Component({
   selector: 'app-planner-v2',
@@ -282,5 +282,9 @@ export class PlannerV2Component implements OnInit {
     this.plan.forEach((p) => (p.rowClasses = { 'table-dark': false }));
     planRow.rowClasses = { 'table-dark': true };
     planRow.fatherSteps.forEach((f) => (f.rowClasses = { 'table-dark': true }));
+  }
+
+  setPlanSelected(selectedPlan: PlanRow[]) {
+    this.plan = selectedPlan;
   }
 }
