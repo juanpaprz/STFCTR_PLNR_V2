@@ -60,8 +60,10 @@ export class ComparativeComponent implements OnInit {
 
     if (!comparatives.some((c) => c.values.some((v) => v > 0))) return;
 
+    let planSave = this.planToCompare.map((p) => new PlanRow(p));
+
     this.plansComparative.forEach((c) => {
-      c.plans.push(this.planToCompare);
+      c.plans.push(planSave);
       let comparative = comparatives.find((p) => p.key === c.key);
 
       if (!comparative) return c.values.push(0);
@@ -80,8 +82,8 @@ export class ComparativeComponent implements OnInit {
   }
 
   onPlanSelected(index: number) {
+    console.log(this.plansComparative);
     let plan: PlanRow[] = this.plansComparative[0].plans[index];
-    console.log(plan);
     this.selectPlanEvent.emit(plan);
   }
 }
