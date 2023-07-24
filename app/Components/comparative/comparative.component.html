@@ -5,6 +5,7 @@
       <ng-container *ngIf="hasValue(plan)">
         <th>{{ plan.key }}</th>
         <td
+        class="text-success"
           *ngFor="let value of plan.values"
           [ngClass]="setBetterOptionClass(plan, value)"
         >
