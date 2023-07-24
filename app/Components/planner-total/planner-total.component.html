@@ -11,7 +11,7 @@
     border border-dark
   "
 >
-  <button class="btn btn-success btn-sm" (click)="addComparative(comparative)">
+  <button class="btn btn-success btn-sm" (click)="addComparative(comparative)" *ngIf="false">
     Compare
   </button>
   <app-export-excel [plan]="plan" [planTotal]="planTotal"></app-export-excel>
