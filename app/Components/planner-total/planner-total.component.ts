@@ -1,6 +1,7 @@
-import { Component, Input, OnChanges, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, ViewChild } from '@angular/core';
 import { PlanTotal, TotalRow } from '../../Entities/plan-total.entity';
 import { PlanRow } from '../../Entities/plan-row.entity';
+import { ComparativeComponent } from '../../Components/comparative/comparative.component';
 
 @Component({
   selector: 'app-planner-total',
@@ -17,7 +18,7 @@ export class PlannerTotalComponent implements OnInit, OnChanges {
   ngOnInit() {}
 
   ngOnChanges() {
-    this.createTotalPlanValues()
+    this.createTotalPlanValues();
   }
 
   createTotalPlanValues() {
@@ -70,5 +71,9 @@ export class PlannerTotalComponent implements OnInit, OnChanges {
 
     exists.amount += totalMachine.amount;
     exists.totalPower += totalMachine.totalPower;
+  }
+
+  addComparative(comparative: ComparativeComponent) {
+    comparative.createCompartive();
   }
 }

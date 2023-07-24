@@ -97,6 +97,10 @@ export class RecipeService {
       (r) => !r.ingridients.some((i) => i.item.id === itemId)
     );
 
+    recipesOfItem = recipesOfItem.filter(
+      (r) => !r.name.toLowerCase().includes('pack')
+    );
+
     let recipe = recipesOfItem.find((r) => !r.isAlternate);
 
     if (!recipe) return recipesOfItem[0];

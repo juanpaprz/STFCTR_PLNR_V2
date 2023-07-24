@@ -13,9 +13,7 @@ export class ComparativeComponent implements OnInit {
 
   plansComparative: PlanComparative[] = [];
 
-  ngOnInit() {
-    this.createCompartive();
-  }
+  ngOnInit() {}
 
   createCompartive() {
     let totalRows = [
