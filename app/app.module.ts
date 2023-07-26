@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
+import { BestPlanComponent } from './Components/best-plan/best-plan.component';
 import { ComparativeComponent } from './Components/comparative/comparative.component';
 import { ExportExcelComponent } from './Components/export-excel/export-excel.component';
 import { PlannerTotalComponent } from './Components/planner-total/planner-total.component';
@@ -28,6 +29,7 @@ const appRoutes: Routes = [
     PlannerTotalComponent,
     ExportExcelComponent,
     ComparativeComponent,
+    BestPlanComponent,
   ],
   bootstrap: [AppComponent],
 })

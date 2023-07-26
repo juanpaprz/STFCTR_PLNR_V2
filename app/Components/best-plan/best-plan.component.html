@@ -1,0 +1,9 @@
+<div class="d-flex-justify-content-end">
+  <button class="btn btn-primary">BEST</button>
+  <input
+    *ngFor="let goal of planGoals; let i = index"
+    type="number"
+    [id]="'machinesNumber' + i"
+    [(ngModel)]="goal.machinesNumber"
+  />
+</div>
