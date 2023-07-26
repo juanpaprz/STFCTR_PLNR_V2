@@ -1,9 +1,17 @@
-<div class="d-flex-justify-content-end">
-  <button class="btn btn-primary">BEST</button>
-  <input
-    *ngFor="let goal of planGoals; let i = index"
-    type="number"
-    [id]="'machinesNumber' + i"
-    [(ngModel)]="goal.machinesNumber"
-  />
+<div class="row d-flex justify-content-end">
+  <div class="col-4 mb-2">
+    <ng-container *ngFor="let goal of planGoals; let i = index">
+      <label [for]="'machinesNumber' + i">{{ goal.item.name }}</label>
+      <input
+        type="number"
+        [id]="'machinesNumber' + i"
+        [name]="'machinesNumber' + i"
+        [(ngModel)]="goal.machinesNumber"
+        class="form-control"
+      />
+    </ng-container>
+  </div>
+  <div class="col-12 d-flex justify-content-end">
+    <button class="btn btn-primary">BEST</button>
+  </div>
 </div>

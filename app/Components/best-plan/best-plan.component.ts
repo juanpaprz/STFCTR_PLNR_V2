@@ -12,4 +12,8 @@ export class BestPlanComponent implements OnInit {
   @Input() planGoals: PlanRow[] = [];
 
   ngOnInit() {}
+
+  generateAllPlans() {
+
+  }
 }
